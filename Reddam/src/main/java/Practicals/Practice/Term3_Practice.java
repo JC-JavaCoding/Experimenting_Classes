@@ -5,6 +5,8 @@
  */
 package Practicals.Practice;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jcj
@@ -13,29 +15,33 @@ public class Term3_Practice
 {
     public static void main(String[] args)
     {
-        
-    }
-    
-    public static void mathCalculations(int [] nums)
-    {
-        int currentNum = 0;
         int highestNum = 0;
         int lowestNum = 0;
-        for (int i = 0; i < nums.length; i++)
+        int total = 0;
+        double avg = 0;
+        for (int i = 0; i < 10; i++)
         {
-            currentNum = nums[i];
-            if (currentNum > highestNum)
+            int number = Integer.parseInt(JOptionPane.showInputDialog("Enter a number"));
+            if (number > highestNum)
             {
-                highestNum = currentNum;
+                highestNum = number;
             }
             if (i == 0)
             {
-                lowestNum = currentNum;
+                lowestNum = number;
             }
-            else if (lowestNum > currentNum) 
+            else if (lowestNum > number) 
             {
-                
+                lowestNum = number;
             }
+            total += number;
+            
         }
+        avg  = total/ 10.0;
+        System.out.println("Highest: "+ highestNum +", Lowest: "+ lowestNum +", avg: "+ avg);
+    
+        
     }
+    
+    
 }
