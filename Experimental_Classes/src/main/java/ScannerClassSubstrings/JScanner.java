@@ -4,6 +4,8 @@
  */
 package ScannerClassSubstrings;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jcj
@@ -13,7 +15,15 @@ public class JScanner
     private String s;
     private char delimeter = ' ';
     private int currentPos = 0;
-    
+    public static void main(String[] args)
+    {
+        String s = JOptionPane.showInputDialog("Enter string");
+        JScanner js = new JScanner(s);
+        
+        System.out.println("Next: "+ js.next());// +"\nNextInt: "+ nextInt());
+        System.out.println("NextInt: "+ js.nextInt());
+        //Hello Dar21kness my 133 old4 friend
+    }
     public JScanner(String inputS)
     {
         s = inputS;
@@ -26,32 +36,58 @@ public class JScanner
     {
         String nextCharSet = "";
         
-        for (; currentPos < s.length(); currentPos++)
+       if (s.contains("" +delimeter))
         {
-            char c = s.charAt(currentPos);
-            if(c == delimeter) break;
-            nextCharSet += c;
-            nextCharSet += s.substring(0, currentPos);
+            nextCharSet = s.substring(0, s.indexOf(delimeter));
+            s = s.substring(s.indexOf(delimeter) +1);
         }
-        
+       
         return nextCharSet;
     }
     public int nextInt()
     {
-        int nextNum = 0;
+        String nextNumStr = "";
         int foundInts = 0;
         int startPos = currentPos;
-        for (; currentPos < s.length(); currentPos++)
-        {
-            if(s.charAt(currentPos) == delimeter && foundInts != 0) break;
-            else if (Character.isDigit(s.charAt(currentPos)))
+        char currChar;
+        int [] intIndx = findIntIndecies();
+
+            currChar = s.charAt(intIndx[currentPos]);
+            while (Character.isDigit(currChar))
             {
-                nextNum += (int)s.charAt(currentPos);
-                foundInts ++;
+                nextNumStr += currChar;
+                currentPos += 1;
+                currChar = s.charAt(currentPos);
+             }
+            s = s.substring(currentPos+1);
+// hello 12 darkn4ss 7m8 fr13nd
+        
+        return Integer.parseInt(nextNumStr);
+    }
+    private int [] findIntIndecies()
+    {
+        int [] indArr = {};
+        int numInts = 0;
+        int secondPos = 0;
+        for (int i = 0; i < s.length(); i++)
+        {
+            char currChar = s.charAt(i);
+            if(Character.isDigit(currChar)) 
+            {
+                numInts++;
             }
         }
-        
-        return nextNum;
+        indArr = new int[numInts];
+        for (int i = 0; i < s.length(); i++)
+        {
+             char currChar = s.charAt(i);
+            if(Character.isDigit(currChar)) 
+            {
+                indArr [secondPos] = i;
+                secondPos++;
+            }
+        }
+        return indArr;
     }
     //setDelimeter
     //next()

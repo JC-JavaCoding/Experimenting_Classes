@@ -18,6 +18,7 @@ public class UseJScanner
         JScanner js = new JScanner(s);
         
         System.out.println("Next: "+ js.next());// +"\nNextInt: "+ nextInt());
-        System.out.println("Next2: "+ js.next());
+        System.out.println("NextInt: "+ js.nextInt());
+        //Hello Dar21kness my 133 old4 friend
     }
 }
